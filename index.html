@@ -1,0 +1,510 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="从2026年10月24日起未来30天的杭州生活指南，包含穿衣、饮食、睡眠、防潮和出行建议。"
+    />
+    <meta name="theme-color" content="#174a3b" />
+    <title>杭州未来30天北方人生活指南</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="data.js" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">跳到主要内容</a>
+
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="#top" aria-label="返回指南首页">
+          <span class="brand-mark" aria-hidden="true">杭</span>
+          <span class="brand-copy">
+            <strong>杭州生活指南</strong>
+            <small>给初来杭州的北方人</small>
+          </span>
+        </a>
+        <div class="header-note">
+          <span class="live-dot" aria-hidden="true"></span>
+          <span id="header-date">2026.10.24 — 11.22</span>
+        </div>
+      </div>
+    </header>
+
+    <nav class="section-nav" aria-label="章节导航">
+      <div class="nav-scroll">
+        <a href="#overview">总览</a>
+        <a href="#today">按天查看</a>
+        <a href="#weeks">每周重点</a>
+        <a href="#clothing">穿衣</a>
+        <a href="#food">饮食</a>
+        <a href="#sleep">睡眠</a>
+        <a href="#home">居家</a>
+        <a href="#commute">出行</a>
+        <a href="#sources">来源</a>
+      </div>
+    </nav>
+
+    <main id="main-content">
+      <section class="hero" id="top">
+        <div class="hero-orb hero-orb-one" aria-hidden="true"></div>
+        <div class="hero-orb hero-orb-two" aria-hidden="true"></div>
+        <div class="hero-inner">
+          <div class="hero-copy">
+            <p class="eyebrow" id="overview-eyebrow">2026.10.24 — 11.22 · 30天</p>
+            <h1>杭州未来30天<br /><span>北方人生活指南</span></h1>
+            <p class="hero-lead" id="overview-intro">
+              这是一份可以每天打开查看的生活手册。先照顾冷暖与干燥，再安排吃什么、怎么出门。
+            </p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="#today">查看今天怎么过</a>
+              <a class="button button-quiet" href="#quick-check">出门前快速检查</a>
+            </div>
+            <p class="hero-disclaimer">
+              前16天已载入公开模型预报；后14天仅作季节预案。临近变化请与中国天气网核对。
+            </p>
+          </div>
+
+          <aside class="weather-panel" aria-labelledby="weather-heading">
+            <div class="weather-panel-top">
+              <div>
+                <p class="small-label">杭州 · 天气状态</p>
+                <h2 id="weather-heading">天气数据尚未更新</h2>
+              </div>
+              <span class="weather-icon" aria-hidden="true">☂</span>
+            </div>
+            <p id="weather-note" class="weather-note">
+              本次未取得可核验的逐日天气。请查看官方预报后再决定雨具、外套和户外活动。
+            </p>
+            <div class="weather-metrics" id="weather-metrics">
+              <div>
+                <span>温度</span>
+                <strong>待更新</strong>
+              </div>
+              <div>
+                <span>体感</span>
+                <strong>待更新</strong>
+              </div>
+              <div>
+                <span>降雨</span>
+                <strong>待更新</strong>
+              </div>
+              <div>
+                <span>湿度</span>
+                <strong>待更新</strong>
+              </div>
+            </div>
+            <div class="weather-actions">
+              <button class="button button-light" id="refresh-weather" type="button">
+                尝试刷新天气
+              </button>
+              <a
+                class="text-link-light"
+                href="https://www.weather.com.cn/weather/101210101.shtml"
+                target="_blank"
+                rel="noopener noreferrer"
+                >打开官方天气预报 ↗</a
+              >
+            </div>
+            <p class="api-note" id="api-note">
+              刷新仅使用公开测试接口，成功结果也请与中国天气网核对。
+            </p>
+          </aside>
+        </div>
+      </section>
+
+      <div class="content-shell">
+        <section class="content-section overview-section" id="overview">
+          <div class="section-heading">
+            <div>
+              <p class="kicker">一页式总览</p>
+              <h2>先记住这三件事</h2>
+            </div>
+            <p class="section-aside">从北方干爽体感切换到江南深秋湿凉体感</p>
+          </div>
+
+          <div class="priority-grid" id="priority-grid" aria-label="30天优先事项"></div>
+
+          <div class="fact-strip">
+            <div class="fact-strip-heading">
+              <span aria-hidden="true">30</span>
+              <p>天内最值得留意</p>
+            </div>
+            <ul id="quick-facts" class="fact-list"></ul>
+          </div>
+        </section>
+
+        <section class="content-section day-section" id="today">
+          <div class="section-heading">
+            <div>
+              <p class="kicker">按天查看</p>
+              <h2>每天打开，先看这一张</h2>
+            </div>
+            <p class="section-aside">
+              点击任意日期切换生活重点；天气栏未更新前只显示季节参考
+            </p>
+          </div>
+
+          <label class="date-picker-label" for="date-picker">选择日期</label>
+          <div class="date-picker-wrap">
+            <select id="date-picker" aria-describedby="date-picker-help"></select>
+            <span id="date-picker-help" class="sr-only">选择未来30天中的日期</span>
+          </div>
+
+          <div class="day-strip" id="day-strip" aria-label="未来30天日期"></div>
+
+          <article class="daily-card" aria-labelledby="selected-date">
+            <div class="daily-card-heading">
+              <div>
+                <p class="daily-count" id="selected-count">第1天 / 共30天</p>
+                <h3 id="selected-date">10月24日 星期六</h3>
+                <p class="daily-phase" id="selected-phase">秋末过渡</p>
+              </div>
+              <div class="daily-weather" id="selected-weather">
+                <span class="weather-placeholder-icon" aria-hidden="true">☁</span>
+                <span>具体天气待更新</span>
+              </div>
+            </div>
+            <p class="daily-headline" id="selected-headline">先用薄外套守住早晚</p>
+            <div class="advice-grid">
+              <div class="advice-card advice-clothing">
+                <span class="advice-icon" aria-hidden="true">穿</span>
+                <h4>穿衣与体感</h4>
+                <p id="selected-focus"></p>
+              </div>
+              <div class="advice-card advice-food">
+                <span class="advice-icon" aria-hidden="true">食</span>
+                <h4>今天吃什么</h4>
+                <p id="selected-food"></p>
+              </div>
+              <div class="advice-card advice-sleep">
+                <span class="advice-icon" aria-hidden="true">眠</span>
+                <h4>晚上怎么盖</h4>
+                <p id="selected-sleep"></p>
+              </div>
+              <div class="advice-card advice-home">
+                <span class="advice-icon" aria-hidden="true">家</span>
+                <h4>居家小动作</h4>
+                <p id="selected-home"></p>
+              </div>
+            </div>
+          </article>
+
+          <div class="weather-boundary">
+            <strong>预报边界</strong>
+            <p id="forecast-boundary">
+              未来30天不可能全部准确预测。临近的逐日天气看官方预报，第三周以后只按趋势准备衣物与居家安排。
+            </p>
+          </div>
+        </section>
+
+        <section class="content-section" id="weeks">
+          <div class="section-heading">
+            <div>
+              <p class="kicker">每周天气与生活重点</p>
+              <h2>把30天拆成可执行的小段</h2>
+            </div>
+            <p class="section-aside">逐日预报与实际体感永远优先于周标题</p>
+          </div>
+          <div class="week-list" id="week-list"></div>
+        </section>
+
+        <section class="content-section" id="clothing">
+          <div class="section-heading">
+            <div>
+              <p class="kicker">穿衣对照表</p>
+              <h2>温度是起点，湿度和风决定体感</h2>
+            </div>
+            <p class="section-aside">表中的外温区间是一般穿搭参考，不是硬性标准</p>
+          </div>
+          <div class="table-wrap" tabindex="0" aria-label="按气温区间整理的穿衣建议表">
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">外温区间</th>
+                  <th scope="col">体感提示</th>
+                  <th scope="col">上衣</th>
+                  <th scope="col">裤装</th>
+                  <th scope="col">外套</th>
+                  <th scope="col">鞋袜</th>
+                  <th scope="col">调整要点</th>
+                </tr>
+              </thead>
+              <tbody id="clothing-table-body"></tbody>
+            </table>
+          </div>
+          <div class="layer-guide">
+            <div>
+              <p class="mini-label">推荐三层</p>
+              <h3>打底 + 保温 + 防风</h3>
+              <p>
+                短袖/薄长袖打底，第二层用开衫、卫衣或薄抓绒，第三层看风雨选风衣、夹克或轻羽绒。比一件很厚的
+                单品更容易应付早晚和空调。
+              </p>
+            </div>
+            <div class="layer-formula" aria-label="穿衣层次示意">
+              <span>快干打底</span>
+              <i aria-hidden="true">+</i>
+              <span>可脱保温层</span>
+              <i aria-hidden="true">+</i>
+              <span>防风外层</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="content-section" id="food">
+          <div class="section-heading">
+            <div>
+              <p class="kicker">当季食材与家常菜单</p>
+              <h2>吃得像杭州，也保留北方胃口</h2>
+            </div>
+            <p class="section-aside">普通菜场与超市易买优先，不以“进补”为饮食目标</p>
+          </div>
+
+          <div class="food-intro">
+            <p>
+              用“主食 + 蛋白质 + 两份蔬菜”做每天的底盘。杭州常见清鲜口味可以用葱姜、醋、少量辣味调整；
+              不必强迫自己接受甜口，也不要依赖保健品解决季节转换。
+            </p>
+          </div>
+
+          <div class="shopping-layout">
+            <article class="shopping-card">
+              <div class="shopping-heading">
+                <span class="category-symbol category-green" aria-hidden="true">蔬</span>
+                <div>
+                  <h3>时令蔬菜</h3>
+                  <p>看当天品相和价格，不保证每家市场都有</p>
+                </div>
+              </div>
+              <ul id="vegetable-list" class="produce-list"></ul>
+            </article>
+            <article class="shopping-card">
+              <div class="shopping-heading">
+                <span class="category-symbol category-orange" aria-hidden="true">果</span>
+                <div>
+                  <h3>当季水果</h3>
+                  <p>作为加餐，注意完整、新鲜和适量</p>
+                </div>
+              </div>
+              <ul id="fruit-list" class="produce-list"></ul>
+            </article>
+            <article class="shopping-card">
+              <div class="shopping-heading">
+                <span class="category-symbol category-blue" aria-hidden="true">鲜</span>
+                <div>
+                  <h3>常见水产</h3>
+                  <p>水产需熟透；过敏者用蛋、豆制品或禽肉替代</p>
+                </div>
+              </div>
+              <ul id="aquatic-list" class="produce-list"></ul>
+            </article>
+          </div>
+
+          <div class="menu-block">
+            <div class="menu-heading">
+              <div>
+                <p class="mini-label">七天上手菜单</p>
+                <h3>工作日也能做的家常组合</h3>
+              </div>
+              <button class="button button-outline" id="print-menu" type="button">打印一周菜单</button>
+            </div>
+            <div class="menu-grid" id="menu-grid"></div>
+            <details class="details-panel">
+              <summary>查看基础采购清单与调味建议</summary>
+              <div class="details-content">
+                <div>
+                  <h4>一周基础采购</h4>
+                  <ul id="pantry-list" class="compact-list"></ul>
+                </div>
+                <div>
+                  <h4>北方口味过渡</h4>
+                  <p>
+                    用葱姜去腥、醋提味、少量酱油增香，不用一次加入很多糖。面食与米饭可以轮换；
+                    辣椒和油脂按个人胃肠耐受调整，不把“能吃辣”当作适应指标。
+                  </p>
+                </div>
+              </div>
+            </details>
+            <p class="fine-print" id="shopping-note"></p>
+          </div>
+        </section>
+
+        <section class="content-section two-column-section" id="sleep">
+          <div>
+            <div class="section-heading compact-heading">
+              <div>
+                <p class="kicker">睡眠与被褥</p>
+                <h2>别看室外温度，直接摸室温</h2>
+              </div>
+            </div>
+            <p class="section-intro">
+              同一室外温度下，空调、取暖、除湿、开窗和墙体保温都会改变卧室环境。把“出汗、肩颈发凉、脚冷”
+              作为当晚是否调整的反馈，比照日历换被子更可靠。
+            </p>
+            <div class="sleep-list" id="sleep-list"></div>
+            <div class="callout callout-warm">
+              <strong>空调房睡觉</strong>
+              <p>
+                风口不要直吹头部和肩颈；设置温度和风速以舒适、可入睡为准。被子只盖到舒适，不用把房间调得很冷再盖厚被。
+                使用定时功能时，仍要检查夜间通风、用电安全和设备清洁。
+              </p>
+            </div>
+          </div>
+          <aside class="bedside-card" aria-labelledby="bedside-title">
+            <span class="bedside-symbol" aria-hidden="true">被</span>
+            <h3 id="bedside-title">睡前30秒判断</h3>
+            <ol>
+              <li>摸一下床单、枕套和睡衣是否干爽。</li>
+              <li>确认室温与湿度，而不是只看手机外温。</li>
+              <li>被子先盖薄一层，夜里冷再加薄毯。</li>
+              <li>出汗就减层；持续失眠或身体不适应寻求专业帮助。</li>
+            </ol>
+            <p class="tiny-note">
+              室内温湿度舒适范围因人和建筑而异。本页建议不构成医疗建议。
+            </p>
+          </aside>
+        </section>
+
+        <section class="content-section" id="home">
+          <div class="section-heading">
+            <div>
+              <p class="kicker">洗澡、洗衣和居家</p>
+              <h2>把“干燥”当成每天的小事</h2>
+            </div>
+            <p class="section-aside">深秋也可能潮湿，但不需要套用梅雨季的极端做法</p>
+          </div>
+          <div class="home-tabs" role="tablist" aria-label="居家防潮分类">
+            <button class="home-tab is-active" type="button" role="tab" aria-selected="true" data-tab="laundry">
+              晾衣
+            </button>
+            <button class="home-tab" type="button" role="tab" aria-selected="false" data-tab="shoes">鞋袜</button>
+            <button class="home-tab" type="button" role="tab" aria-selected="false" data-tab="bathroom">
+              洗澡
+            </button>
+            <button class="home-tab" type="button" role="tab" aria-selected="false" data-tab="damp">防潮</button>
+          </div>
+          <div class="home-panel" id="home-panel" role="tabpanel"></div>
+        </section>
+
+        <section class="content-section commute-section" id="commute">
+          <div class="section-heading">
+            <div>
+              <p class="kicker">出门与交通</p>
+              <h2>每天一分钟，把天气带上</h2>
+            </div>
+            <p class="section-aside">点击勾选仅保存在你的本机浏览器中</p>
+          </div>
+
+          <div class="commute-layout" id="quick-check">
+            <article class="check-card">
+              <div class="check-card-heading">
+                <div>
+                  <p class="mini-label">每日出门检查</p>
+                  <h3>出门前 6 项</h3>
+                </div>
+                <button class="text-button" id="reset-checks" type="button">全部重置</button>
+              </div>
+              <div id="daily-check-list" class="check-list"></div>
+            </article>
+
+            <article class="bag-card">
+              <p class="mini-label">通勤包常驻</p>
+              <h3>有备无患，不背一整天负担</h3>
+              <ul id="bag-list" class="bag-list"></ul>
+            </article>
+          </div>
+
+          <div class="rain-plan">
+            <div>
+              <p class="mini-label">雨天预案</p>
+              <h3>雨伞不是唯一答案</h3>
+            </div>
+            <ul id="rain-list"></ul>
+          </div>
+          <div class="warning-banner">
+            <span aria-hidden="true">!</span>
+            <div>
+              <strong>有预警时，先按官方要求行动</strong>
+              <p id="warning-text"></p>
+              <a
+                href="http://www.12379.cn/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >打开国家预警发布网 ↗</a
+              >
+            </div>
+          </div>
+        </section>
+
+        <section class="content-section" id="differences">
+          <div class="section-heading">
+            <div>
+              <p class="kicker">北方人容易忽略的问题</p>
+              <h2>区分事实、倾向和个人感受</h2>
+            </div>
+            <p class="section-aside">不用地域刻板印象替代自己的实际体验</p>
+          </div>
+          <div class="comparison-grid" id="comparison-grid"></div>
+        </section>
+
+        <section class="content-section sources-section" id="sources">
+          <div class="section-heading">
+            <div>
+              <p class="kicker">信息来源与更新时间</p>
+              <h2>链接在这里，判断边界也在这里</h2>
+            </div>
+            <p class="section-aside">资料整理日期：2026年10月24日</p>
+          </div>
+          <div class="source-status">
+            <span class="status-dot" aria-hidden="true"></span>
+            <div>
+              <strong>天气数值未写入</strong>
+              <p>
+                本页已载入公开模型在2026年10月24日14:07取得的16天预报，共覆盖至11月8日；它不是中国气象局正式预报。
+                中国天气网和浙江省政府网站在本次制作环境中未能成功读取。第17—30天没有填入确定天气，只作季节参考。
+              </p>
+            </div>
+          </div>
+          <div class="source-list" id="source-list"></div>
+          <div class="source-principles">
+            <div>
+              <h3>这份指南如何处理不确定性</h3>
+              <ul>
+                <li>前16天标注模型预报及获取时间；后14天不把季节经验写成确定天气。</li>
+                <li>菜品、价格和供应量随市场波动，指南只列常见方向。</li>
+                <li>人体冷热、睡眠与舒适度存在差异，建议用于试穿和调整。</li>
+                <li>出现持续呼吸困难、严重过敏、食物中毒或居家霉害问题时，应寻求专业帮助。</li>
+              </ul>
+            </div>
+            <div>
+              <h3>建议的每日查询顺序</h3>
+              <ol>
+                <li>先看中国天气网杭州的短时或逐日预报。</li>
+                <li>遇极端天气再看预警发布网与交通部门通知。</li>
+                <li>最后结合本页穿衣、饮食、睡眠和防潮清单。</li>
+              </ol>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer-inner">
+        <div>
+          <strong>杭州未来30天北方人生活指南</strong>
+          <p>制作日期 2026年10月24日 · 适用于本地使用，不替代实时气象预警与医疗建议。</p>
+        </div>
+        <a href="#top">回到顶部 ↑</a>
+      </div>
+    </footer>
+
+    <noscript>
+      <div class="noscript-warning">
+        请启用 JavaScript 才能使用日期切换、清单勾选和完整页面内容。
+      </div>
+    </noscript>
+  </body>
+</html>
